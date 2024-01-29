@@ -1,9 +1,16 @@
-import type { Config } from "drizzle-kit";
-import * as dotenv from "dotenv";
+import type { Config } from 'drizzle-kit';
+import * as dotenv from 'dotenv';
 dotenv.config();
+const { DATABASE_URL } = process.env;
+if (!DATABASE_URL) {
+	throw new Error('No url');
+}
 
 export default {
-  schema: "./src/lib/server/db/schema.ts",
-  out: "./migrations",
-  connectionString: process.env.DATABASE_URL,
+	schema: './src/lib/server/db/schema.ts',
+	out: './migrations',
+	driver: 'pg',
+	dbCredentials: {
+		connectionString: DATABASE_URL
+	}
 } satisfies Config;
