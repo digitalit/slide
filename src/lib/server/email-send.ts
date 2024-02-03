@@ -17,13 +17,7 @@ export default async function sendEmail(
 	bodyHtml?: string,
 	bodyText?: string
 ) {
-	if (
-		env.SMTP_HOST &&
-		env.SMTP_PORT &&
-		env.SMTP_USER &&
-		env.SMTP_PASS &&
-		env.FROM_EMAIL
-	) {
+	if (env.SMTP_HOST && env.SMTP_PORT && env.SMTP_USER && env.SMTP_PASS && env.FROM_EMAIL) {
 		// create Nodemailer SMTP transporter
 		let info;
 		try {
